@@ -30,6 +30,7 @@ namespace BeMyGuestMVC.Controllers
         public ActionResult Index()
         {
             List<Guest> model = _db.Guests.ToList();
+            model.Sort((x, y) => string.Compare(x.Name, y.Name));
             return View(model);
         }
 
