@@ -22,9 +22,13 @@ namespace BeMyGuest.Models
         [Display(Name = "Venue Requirements")]
         public string VenueRequirements { get; set; }
         [Display(Name = "Start Time")]
-        public string StartTime { get; set; }
+        // [DataType(DataType.Time)]
+        // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:MM tt PST")]
+        public DateTime StartTime { get; set; }
         [Display(Name = "End Time")]
-        public string EndTime { get; set; }
+        // [DataType(DataType.Time)]
+        // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:MM tt PST")]
+        public DateTime EndTime { get; set; }
         [Display(Name = "Quarantine Requirements")]
         public string QuarantineRequirements { get; set; }
         [Display(Name = "Mask Requirements")]
