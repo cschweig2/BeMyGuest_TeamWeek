@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using BeMyGuest.Models;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BeMyGuest.ViewModels;
 
@@ -46,6 +47,9 @@ namespace BeMyGuest.Controllers
                     IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
+                        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        var currentUser = await _userManager.FindByIdAsync(userId);
+                        ViewBag.userId = userId;
                         return RedirectToAction("Login");
                     }
                     else
@@ -68,14 +72,24 @@ namespace BeMyGuest.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model, string Id)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if (result.Succeeded)
+            try
             {
-                return RedirectToAction("Index");
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    var currentUser = await _userManager.FindByIdAsync(userId);
+                    return RedirectToAction("AssignRole", "Administration", new { Id = userId});
+                }
+                else
+                {
+                    ViewBag.Error = result;
+                    return View();
+                }
             }
-            else
+            catch(Exception result)
             {
                 ViewBag.Error = result;
                 return View();

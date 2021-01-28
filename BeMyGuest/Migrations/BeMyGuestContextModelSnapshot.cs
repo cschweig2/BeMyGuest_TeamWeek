@@ -67,46 +67,14 @@ namespace BeMyGuest.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("BeMyGuest.Models.CovidData", b =>
-                {
-                    b.Property<int>("CovidDataId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AgeAnswer");
-
-                    b.Property<bool>("Cough");
-
-                    b.Property<string>("Explanation");
-
-                    b.Property<bool>("Fever");
-
-                    b.Property<int>("GuestCovidInfoId");
-
-                    b.Property<string>("Question");
-
-                    b.Property<string>("SexAnswer");
-
-                    b.Property<bool>("Sob");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<bool>("YesNo");
-
-                    b.HasKey("CovidDataId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CovidDataSet");
-                });
-
             modelBuilder.Entity("BeMyGuest.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("EndTime");
+                    b.Property<string>("EndTime");
 
-                    b.Property<DateTime?>("EventDate");
+                    b.Property<DateTime>("EventDate");
 
                     b.Property<string>("EventTitle");
 
@@ -114,7 +82,7 @@ namespace BeMyGuest.Migrations
 
                     b.Property<string>("QuarantineRequirements");
 
-                    b.Property<DateTime?>("StartTime");
+                    b.Property<string>("StartTime");
 
                     b.Property<string>("UserId");
 
@@ -129,6 +97,42 @@ namespace BeMyGuest.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("BeMyGuest.Models.Evidence", b =>
+                {
+                    b.Property<int>("EvidenceId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("EndTime");
+
+                    b.Property<DateTime?>("EventDate");
+                    b.Property<int>("AgeAnswer");
+
+                    b.Property<bool>("Cough");
+
+                    b.Property<string>("Explanation");
+
+                    b.Property<bool>("Fever");
+
+                    b.Property<int>("GuestCovidInfoId");
+
+                    b.Property<DateTime?>("StartTime");
+                    b.Property<string>("Question");
+
+                    b.Property<string>("SexAnswer");
+
+                    b.Property<bool>("Sob");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<bool>("YesNo");
+
+                    b.HasKey("EvidenceId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Evidences");
                 });
 
             modelBuilder.Entity("BeMyGuest.Models.Gathering", b =>
@@ -164,11 +168,11 @@ namespace BeMyGuest.Migrations
 
                     b.Property<bool>("CompletedQuestionnaire");
 
-                    b.Property<int?>("CovidDataId");
-
                     b.Property<string>("DietaryRestrictions");
 
                     b.Property<string>("Email");
+
+                    b.Property<int?>("EvidenceId");
 
                     b.Property<bool>("HighRisk");
 
@@ -198,7 +202,7 @@ namespace BeMyGuest.Migrations
 
                     b.HasKey("GuestId");
 
-                    b.HasIndex("CovidDataId");
+                    b.HasIndex("EvidenceId");
 
                     b.HasIndex("UserId");
 
@@ -330,14 +334,14 @@ namespace BeMyGuest.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BeMyGuest.Models.CovidData", b =>
+            modelBuilder.Entity("BeMyGuest.Models.Event", b =>
                 {
                     b.HasOne("BeMyGuest.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("BeMyGuest.Models.Event", b =>
+            modelBuilder.Entity("BeMyGuest.Models.Evidence", b =>
                 {
                     b.HasOne("BeMyGuest.Models.ApplicationUser", "User")
                         .WithMany()
@@ -361,9 +365,9 @@ namespace BeMyGuest.Migrations
 
             modelBuilder.Entity("BeMyGuest.Models.Guest", b =>
                 {
-                    b.HasOne("BeMyGuest.Models.CovidData", "CovidData")
+                    b.HasOne("BeMyGuest.Models.Evidence", "Evidence")
                         .WithMany("Guests")
-                        .HasForeignKey("CovidDataId");
+                        .HasForeignKey("EvidenceId");
 
                     b.HasOne("BeMyGuest.Models.ApplicationUser", "User")
                         .WithMany()
