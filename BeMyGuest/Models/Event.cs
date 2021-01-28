@@ -15,7 +15,7 @@ namespace BeMyGuest.Models
         [Display(Name="Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy")]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
         public string Venue { get; set; }
         [Display(Name = "Venue Address")]
         public string VenueAddress { get; set; }
@@ -24,11 +24,11 @@ namespace BeMyGuest.Models
         [Display(Name = "Start Time")]
         // [DataType(DataType.Time)]
         // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:MM tt PST")]
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
         [Display(Name = "End Time")]
         // [DataType(DataType.Time)]
         // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:MM tt PST")]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
         [Display(Name = "Quarantine Requirements")]
         public string QuarantineRequirements { get; set; }
         [Display(Name = "Mask Requirements")]

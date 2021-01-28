@@ -15,8 +15,8 @@
             <div class="card" style="width: 36rem;">
                 <div class="card-body">
                     <li>@Html.ActionLink($"{guest.Name}", "Details", new { id = guest.GuestId })</li>
-                    <li>@guest.HighRisk</li>
-                    <li>@guest.CompletedQuestionnaire</li>
+                    <li>High Risk Attendee: @guest.HighRisk</li>
+                    <li>Has Completed Questionnaire: @guest.CompletedQuestionnaire</li>
                 </div>
             </div>
         }
