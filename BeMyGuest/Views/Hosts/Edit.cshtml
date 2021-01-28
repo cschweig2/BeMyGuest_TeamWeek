@@ -10,13 +10,21 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.HostId)
-    <div class="form-group">
-        @Html.LabelFor(model => model.HostName)
-        @Html.TextBoxFor(model => model.HostName)
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-default">
+    <div class="card" style="width: 48rem;">
+        <div class="card-body">
+            @Html.HiddenFor(model => model.HostId)
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HostName, new { @class="col-sm-3 col-form-label" })
+                @Html.EditorFor(model => model.HostName, new { @class="col-sm-8 col-form-label" })
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HostEmail, new { @class="col-sm-3 col-form-label" })
+                @Html.EditorFor(model => model.HostEmail, new { @class="col-sm-8 col-form-label" })
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Save" class="btn btn-outline-info">
+            </div>
+        </div>
     </div>
 }
 

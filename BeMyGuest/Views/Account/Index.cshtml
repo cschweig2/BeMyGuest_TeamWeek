@@ -13,7 +13,6 @@
             <div class="card-body">
                 <h4 class="card-title">Hello</h4>
                 <p class="card-text"> @User.Identity.Name!</p>
-                @* <a class="card-text"></a> *@
                 @using (Html.BeginForm("LogOff", "Account"))
                 {
                     <div class="form-group">
@@ -25,7 +24,11 @@
     }
     else
     {
-        <p>@Html.ActionLink("Register", "Register")</p>
-        <p>@Html.ActionLink("Log In", "Login")</p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">@Html.ActionLink("Register", "Register")</p>
+                <p class="card-text">@Html.ActionLink("Log In", "Login")</p>
+            </div>
+        </div>
     }
 </div>

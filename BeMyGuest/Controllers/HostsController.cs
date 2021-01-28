@@ -28,7 +28,9 @@ namespace BeMyGuest.Controllers
         {
             Dictionary<object, object> model = new Dictionary<object, object>();
             List<Guest> guests = _db.Guests.ToList();
+            guests.Sort((x, y) => string.Compare(x.Name, y.Name));
             List<Event> events = _db.Events.ToList();
+            events.Sort((x, y) => string.Compare(x.EventTitle, y.EventTitle));
             model.Add("guests", guests);
             model.Add("events", events);
             return View(model);

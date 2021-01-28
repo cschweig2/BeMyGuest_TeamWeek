@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace BeMyGuest.Controllers
 {
@@ -31,7 +32,9 @@ namespace BeMyGuest.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var userEvents = _db.Events.Where(entry => entry.User.Id == currentUser.Id).ToList();
-            return View(userEvents);
+            var sortedEvents = userEvents.OrderBy(x => x.EventDate);
+            var displayEvents = sortedEvents.ToList();
+            return View(displayEvents);
         }
 
         public ActionResult Create()

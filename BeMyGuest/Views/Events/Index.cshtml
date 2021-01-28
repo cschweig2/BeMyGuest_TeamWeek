@@ -9,15 +9,26 @@
 <hr>
 @if (Model.Any())
 {
-    <ul>
+    <ul style="list-style: none;">
         @foreach(Event myEvent in Model)
         {
-            <li>@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</li>
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</p>
+                    <li class="card-text">@myEvent.EventDate</li>
+                    <li class="card-text">@myEvent.StartTime</li>
+                    <li class="card-text">@myEvent.EndTime</li>
+                </div>
+            </div>
         }
     </ul>
 }
 else
 {
-    <h3>There are no events added yet.</h3>
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+            <h3>There are no events added yet.</h3>
+        </div>
+    </div>
 }
 <h3>@Html.ActionLink("Add a New Event", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>
