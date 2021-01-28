@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeMyGuest.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private RoleManager<IdentityRole> _roleManager;
@@ -200,11 +200,13 @@ namespace BeMyGuest.Controllers
         [HttpGet]
         public async Task<IActionResult> AssignRole(string Id)
         {
-           ViewBag.userId = Id;
-           var user = await _userManager.FindByIdAsync(Id);
-           if(user == null)
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            ViewBag.userId = userId;
+            var user = await _userManager.FindByIdAsync   (userId);
+            if(user == null)
            {
-               ViewBag.ErrorMessage = $"User with Id {Id} cannot be found";
+               ViewBag.ErrorMessage = $"User with Id {userId} cannot be found 1";
                return View("NotFound");
            } 
            var model = new List<AssignRoleViewModel>();
@@ -215,7 +217,7 @@ namespace BeMyGuest.Controllers
                    RoleId = role.Id,
                    RoleName = role.Name
                };
-               if (await _userManager.IsInRoleAsyc(user, role.Name))
+               if (await _userManager.IsInRoleAsync(user, assignRoleViewModel.RoleName))
                {
                    assignRoleViewModel.IsSelected = true;
                }
@@ -231,10 +233,12 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignRole(List<AssignRoleViewModel> model, string userId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var userIdee = this.User.FindFirst(ClaimTypes.  NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userIdee);
+            var user = await _userManager.FindByIdAsync(userIdee);
             if(user == null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                ViewBag.ErrorMessage = $"User with Id = {userIdee} cannot be found 2";
                 return View("NotFound");
             }
             var roles = await _userManager.GetRolesAsync(user);

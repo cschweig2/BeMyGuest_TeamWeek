@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace BeMyGuest.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [Authorize(Roles = "Host")]
     [Authorize(Roles = "Guest")]
     public class EventsController : Controller
