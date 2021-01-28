@@ -19,14 +19,14 @@
         <p class="card-text text-center text-muted">
             @using (Html.BeginForm())
             {
-            <div class="form-control-lg form-row">
-                @Html.LabelFor(account => account.Email)
-                @Html.TextBoxFor(account => account.Email)
+            <div class="form-group row">
+                @Html.LabelFor(account => account.Email, new { @class="col-sm-3 col-form-label" })
+                @Html.TextBoxFor(account => account.Email, new { @class="col-sm-8", @placeholder="youremail@example.com"})
             </div>
 
-            <div class="form-control-lg form-row">
-                @Html.LabelFor(account => account.Password)
-                @Html.PasswordFor(account => account.Password)
+            <div class="form-group row">
+                @Html.LabelFor(account => account.Password, new { @class="col-sm-3 col-form-label" })
+                @Html.PasswordFor(account => account.Password, new { @class="col-sm-8", @placeholder="Your super secure password"})
             </div>
             <div class="card-text text-center text-muted">
                 <input type="submit" value="Log In" class="btn btn-outline-info">
