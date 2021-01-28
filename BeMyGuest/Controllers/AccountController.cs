@@ -46,7 +46,7 @@ namespace BeMyGuest.Controllers
                     IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("AssignRole", "Administration", new { Id = user.Id});
                     }
                     else
                     {
@@ -70,12 +70,20 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if (result.Succeeded)
+            try
             {
-                return RedirectToAction("Index");
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = result;
+                    return View();
+                }
             }
-            else
+            catch(Exception result)
             {
                 ViewBag.Error = result;
                 return View();
