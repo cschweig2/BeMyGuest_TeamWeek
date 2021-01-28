@@ -9,10 +9,16 @@
 <hr>
 @if (Model.Any())
 {
-    <ul>
+    <ul style="list-style: none;">
         @foreach(Guest guest in Model)
         {
-            <li>@Html.ActionLink($"{guest.Name}", "Details", new { id = guest.GuestId })</li>
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <li>@Html.ActionLink($"{guest.Name}", "Details", new { id = guest.GuestId })</li>
+                    <li>@guest.HighRisk</li>
+                    <li>@guest.CompletedQuestionnaire</li>
+                </div>
+            </div>
         }
     </ul>
 }
