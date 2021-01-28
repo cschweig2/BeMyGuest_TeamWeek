@@ -8,11 +8,6 @@
 <h1>Log In with your Account</h1>
 <hr>
 
-@if (ViewBag.Error != null)
-{
-    <h3>@ViewBag.Error, Please try again.</h3>
-}
-
 <div class="card mx-auto" style="width: 36rem;">
     <div class="card-body">
         <h5 class="card-title text-center">Log In</h5>
@@ -31,6 +26,11 @@
             <div class="card-text text-center text-muted">
                 <input type="submit" value="Log In" class="btn btn-outline-info">
             </div>
+            @if (ViewBag.Error != null)
+            {
+                <h3 class="errorMessage">@ViewBag.Error, please try again.</h3>
+            }
+
             }
     </div>
 </div>
