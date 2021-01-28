@@ -10,12 +10,12 @@ namespace BeMyGuest.Models
     {
         public GuestCovidInfo()
         {
-            this.CovidData = new HashSet<CovidData>();
+            this.Evidence = new HashSet<Evidence>();
         }
         public int GuestCovidInfoId { get; set; }
         public string Sex { get; set; }
         public int Age { get; set; }
-        public ICollection<CovidData> CovidData { get; set; }
+        public ICollection<Evidence> Evidence { get; set; }
 
         public static List<GuestCovidInfo> GetGuestCovidInfo()
         {
@@ -27,15 +27,15 @@ namespace BeMyGuest.Models
 
             return infoList;
         }
-        public static GuestCovidInfo GetDetails(int id)
-        {
-            var apiCallTask = DiagnosesApiHelper.Get(id);
-            var result = apiCallTask.Result;
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            GuestCovidInfo GuestCovidInfo = JsonConvert.DeserializeObject<GuestCovidInfo>(jsonResponse.ToString());
+        // public static GuestCovidInfo GetDetails(int id)
+        // {
+        //     var apiCallTask = DiagnosesApiHelper.Get(id);
+        //     var result = apiCallTask.Result;
+        //     JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+        //     GuestCovidInfo GuestCovidInfo = JsonConvert.DeserializeObject<GuestCovidInfo>(jsonResponse.ToString());
 
-            return GuestCovidInfo;
-        }
+        //     return GuestCovidInfo;
+        // }
         public static void Post(GuestCovidInfo guestCovidInfo)
         {
             string jsonGuestCovidData = JsonConvert.SerializeObject(guestCovidInfo);
