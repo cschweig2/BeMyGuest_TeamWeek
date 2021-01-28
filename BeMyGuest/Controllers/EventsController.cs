@@ -32,7 +32,7 @@ namespace BeMyGuest.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var userEvents = _db.Events.Where(entry => entry.User.Id == currentUser.Id).ToList();
-            var sortedEvents = userEvents.OrderBy(x => x.EventDate.Year);
+            var sortedEvents = userEvents.OrderBy(x => x.EventDate);
             var displayEvents = sortedEvents.ToList();
             return View(displayEvents);
         }

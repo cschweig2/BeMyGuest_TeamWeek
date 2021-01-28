@@ -60,4 +60,4 @@ else
 } *@
 @* @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
 { *@
-    <h3>@Html.ActionLink("Edit Guest", "Edit", new { id = Model.GuestId }, new {@class="btn btn-outline-info"}) || @Html.ActionLink("Add a Guest", "AddGuest", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Delete Guest", "Delete", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Guests Home", "Index", new {@class ="btn btn-outline-info"})</h3>
+<h3>@Html.ActionLink("Edit Guest", "Edit", new { id = Model.GuestId }, new {@class="btn btn-outline-info"}) || @Html.ActionLink("Add a Guest", "AddGuest", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Delete Guest", "Delete", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Guests Home", "Index", new {@class ="btn btn-outline-info"})</h3>
