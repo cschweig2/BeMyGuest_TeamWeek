@@ -7,8 +7,14 @@
 <h2>Host Details</h2>
 <hr />
 
-<h3>@Html.DisplayNameFor(model => model.HostName):</h3>
-<h4>@Html.DisplayFor(model => model.HostName)</h4>
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+        <h3>@Html.DisplayNameFor(model => model.HostName):</h3>
+        <h4>@Html.DisplayFor(model => model.HostName)</h4>
+        <h3>@Html.DisplayNameFor(model => model.HostEmail):</h3>
+        <h4>@Html.DisplayFor(model => model.HostEmail)</h4>
+    </div>
+</div>
 
 @* @if(@Model.Guests.Count == 0)
 {

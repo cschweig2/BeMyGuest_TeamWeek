@@ -6,15 +6,23 @@
 
 <h2>Add a New Host</h2>
 <hr />
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        @Html.LabelFor(model => model.HostName)
-        @Html.TextBoxFor(model => model.HostName)
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.HostName)
+                @Html.TextBoxFor(model => model.HostName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HostEmail)
+                @Html.TextBoxFor(model => model.HostEmail)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add New Host" class="btn btn-outline-info"/>
+            </div>
+        }
     </div>
-    <div class="form-group">
-        <input type="submit" value="Add New Host" class="btn btn-default"/>
-    </div>
-}
+</div>
 
 <h3>@Html.ActionLink("Hosts Home", "Index")</h3>
