@@ -9,10 +9,17 @@
 <hr>
 @if (Model.Any())
 {
-    <ul>
+    <ul style="list-style: none;">
         @foreach(Event myEvent in Model)
         {
-            <li>@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</li>
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</p>
+                    <li class="card-text">@myEvent.EventDate</li>
+                    <li class="card-text">@myEvent.StartTime</li>
+                    <li class="card-text">@myEvent.EndTime</li>
+                </div>
+            </div>
         }
     </ul>
 }

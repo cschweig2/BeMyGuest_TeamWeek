@@ -8,11 +8,19 @@
 <hr>
 <h4>Add Guest To: @Html.DisplayFor(model => model.EventTitle)</h4>
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.EventId)
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.EventId)
 
-    <h4>Guests to Invite: @Html.DropDownList("GuestId")</h4>
+        <div class="form-group row">
+            <h3>Guest to Invite: @Html.DropDownList("GuestId")</h3>
+        </div>
 
-    <input type="submit" value="Save" class="btn btn-default" />
-}
+        <div class="form-group row">
+            <input type="submit" value="Save" class="btn btn-outline-info" />
+        </div>
+    }
+    </div>
+</div>
