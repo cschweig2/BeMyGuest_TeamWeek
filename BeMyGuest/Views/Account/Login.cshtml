@@ -19,6 +19,7 @@
         <p class="card-text text-center text-muted">
             @using (Html.BeginForm())
             {
+                @Html.Hidden("ViewBag.userId")
             <div class="form-control-lg form-row">
                 @Html.LabelFor(account => account.Email)
                 @Html.TextBoxFor(account => account.Email)

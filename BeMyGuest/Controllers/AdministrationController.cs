@@ -3,9 +3,11 @@ using BeMyGuest.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BeMyGuest.Controllers
@@ -195,6 +197,67 @@ namespace BeMyGuest.Controllers
             return RedirectToAction("EditRole", new { Id = Id }); // re-routed to index.. skipped loop entirely
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AssignRole(string Id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            ViewBag.userId = userId;
+            var user = await _userManager.FindByIdAsync   (userId);
+            if(user == null)
+           {
+               ViewBag.ErrorMessage = $"User with Id {userId} cannot be found 1";
+               return View("NotFound");
+           } 
+           var model = new List<AssignRoleViewModel>();
+           foreach(var role in _roleManager.Roles)
+           {
+               var assignRoleViewModel = new AssignRoleViewModel
+               {
+                   RoleId = role.Id,
+                   RoleName = role.Name
+               };
+               if (await _userManager.IsInRoleAsync(user, assignRoleViewModel.RoleName))
+               {
+                   assignRoleViewModel.IsSelected = true;
+               }
+               else
+               {
+                   assignRoleViewModel.IsSelected = false;
+               }
+               model.Add(assignRoleViewModel);
+           }
+           return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<AssignRoleViewModel> model, string userId)
+        {
+            var userIdee = this.User.FindFirst(ClaimTypes.  NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userIdee);
+            var user = await _userManager.FindByIdAsync(userIdee);
+            if(user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {userIdee} cannot be found 2";
+                return View("NotFound");
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
+            if(!result.Succeeded)
+            {
+                ViewBag.ErrorMessage = "Cannot remove user existing rolse";
+                return View();
+            }
+            result = await _userManager.AddToRolesAsync(user, model.Where(x => x.IsSelected).Select(y => y.RoleName));
+            if(!result.Succeeded)
+            {
+                ViewBag.ErrorMessage = "Cannot add selected roles to user";
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+
+        }
+        
         [HttpGet]
         public ActionResult Delete(int id)
         {
