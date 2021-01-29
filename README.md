@@ -68,7 +68,7 @@ Web Page Preview <br>
 
 <br>
 <div align="center">
-To view a mobile demo of the app, please download the Fluid UI app for (iOS)[https://www.fluidui.com/ios] or (Android)[https://www.fluidui.com/android]
+To view a mobile demo of the app, please download the Fluid UI app for [iOS](https://www.fluidui.com/ios) or [Android](https://www.fluidui.com/android)
 
 Visit this [page](https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ) to view the live prototype.
 </div> 
