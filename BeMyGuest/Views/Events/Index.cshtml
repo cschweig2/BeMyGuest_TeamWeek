@@ -10,14 +10,15 @@
 @if (Model.Any())
 {
     <ul style="list-style: none;">
-        @foreach(Event myEvent in Model)
+    @foreach (Event myEvent in Model)
         {
             <div class="card" style="width: 36rem;">
                 <div class="card-body">
-                    <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId }, new { type="date" })</p>
-                    <li class="card-text">Event Date: @myEvent.EventDate</li>
-                    <li class="card-text">Start Time: @myEvent.StartTime</li>
-                    <li class="card-text">End Time: @myEvent.EndTime</li>
+                    <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId }, new
+                            { type="date" })</p>
+                    <li class="card-text">@Html.DisplayFor(modelEvent => myEvent.EventDate, new {@type="date"})</li>
+                    <li class="card-text">@Html.DisplayFor(modelEvent => myEvent.StartTime, new {@type="time"}) -
+                        @Html.DisplayFor(modelEvent => myEvent.EndTime, new {@type="time"})</li>
                 </div>
             </div>
         }
@@ -26,9 +27,9 @@
 else
 {
     <div class="card" style="width: 36rem;">
-        <div class="card-body">
-            <h3>There are no events added yet.</h3>
-        </div>
+    <div class="card-body">
+        <h3>There are no events added yet.</h3>
     </div>
+</div>
 }
 <h3>@Html.ActionLink("Add a New Event", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>
