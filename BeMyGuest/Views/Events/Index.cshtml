@@ -15,9 +15,9 @@
             <div class="card" style="width: 36rem;">
                 <div class="card-body">
                     <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</p>
-                    <li class="card-text">@myEvent.EventDate</li>
-                    <li class="card-text">@myEvent.StartTime</li>
-                    <li class="card-text">@myEvent.EndTime</li>
+                    <li class="card-text">@Html.DisplayFor(modelEvent => myEvent.EventDate, new {@type="date"})</li>
+                    <li class="card-text">@Html.DisplayFor(modelEvent => myEvent.StartTime, new {@type="time"}) -
+                        @Html.DisplayFor(modelEvent => myEvent.EndTime, new {@type="time"})</li>
                 </div>
             </div>
         }
