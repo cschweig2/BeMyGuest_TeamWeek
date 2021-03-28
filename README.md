@@ -67,15 +67,11 @@ Web Page Preview <br>
 </div>
 
 <br>
-
-To view a mobile demo of the app, please download the Fluid UI app for [iOS](https://www.fluidui.com/ios) or [Android](https://www.fluidui.com/android), then scan this code:
 <div align="center">
+To view a mobile demo of the app, please download the Fluid UI app for [iOS](https://www.fluidui.com/ios) or [Android](https://www.fluidui.com/android)
 
-  <iframe data-id="p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ" data-src="https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ" src="https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ"></iframe>
-
-</div>
-
-Alternatively, visit this [page](https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ) to view the live prototype.
+Visit this [page](https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ) to view the live prototype.
+</div> 
 
 ## **Schema**
 
